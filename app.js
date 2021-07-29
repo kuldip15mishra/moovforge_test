@@ -54,13 +54,22 @@ async function fetchAllLinks(links) {
         }
         let result=  await  Promise.all(promiseArray)
         console.log(" Crawled ", + crawllinks.length + " pages." + "Found " + findresult.length + " pages with the term " + pattern);
+        displayresult();
+        
     }
 }
 
 
+function displayresult(){
+    if(findresult && findresult.length>0)
+    for(let i=0;i<findresult.length;i++){
+        console.log("$ " +findresult[i].href + " =>"  + findresult[i].text);
+    }
+}
+
 
     function addToMainArray(data) {
-        console.log("data")
+     
         for (let k = 0; k < data.length; k++) {
             findresult.push(data[k]);
 
@@ -93,5 +102,5 @@ async function fetchAllLinks(links) {
     }
 
     loadwebsite(url);
-
+    
 
